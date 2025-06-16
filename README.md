@@ -20,10 +20,11 @@ This minimal bare-metal runtime:
 
 Modern HFT infrastructure typically leans toward two extremes:
 
-| Approach        | Pros                                    | Cons                          
-|-----------------|-----------------------------------------|------------------------------------------------------------------
+| Approach        | Pros                                    | Cons                                                             |
+|-----------------|-----------------------------------------|------------------------------------------------------------------|
 | FPGA            | Hard real-time, sub-microsecond latency | Inflexible, costly, difficult to modify                          |
 | Customized Linux| Flexible, large ecosystem.              | Suffers from syscall overhead, jitter, and general-purpose bloat |
+
 
 This project explores a third approach — a custom operating system that:
 - Runs directly on bare metal
@@ -35,7 +36,7 @@ This project explores a third approach — a custom operating system that:
 
 ## Architecture Overview
 
-            +--------------------------+
+                +--------------------------+
                 |      Stock Exchange      |
                 +--------------------------+
                            ⇅
@@ -43,8 +44,8 @@ This project explores a third approach — a custom operating system that:
                            ⇅
                 +--------------------------+
                 |       NIC (RX/TX)        |
-                |  - MMIO / Polling Driver |
-                |  - Time Stamping (HW)    |
+                |  - MMIO / Polling Driver |  <-- Ethernet frame order & duplications 
+                |  - Time Stamping (HW)    |      are checked by CRC and FCS
                 +--------------------------+
                            ⇅
                 +--------------------------+
