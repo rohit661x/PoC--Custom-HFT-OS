@@ -35,7 +35,7 @@ This project explores a third approach — a custom operating system that:
 
 ## Architecture Overview
 
-                +--------------------------+
+            +--------------------------+
                 |      Stock Exchange      |
                 +--------------------------+
                            ⇅
@@ -66,6 +66,8 @@ This project explores a third approach — a custom operating system that:
                 +--------------------------+
                 |      Stock Exchange      |
                 +--------------------------+
+
+    
 
 
 - **NIC (Network Interface Card)**:
