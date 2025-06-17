@@ -89,13 +89,6 @@ This project explores a third approach — a custom operating system that:
 - **Exchange**:
   - Acts as both market data publisher and order receiver.
 
-[1] Bootloader            ← Hardware-tied
-[2] NIC Driver            ← Mix: low-level hardware + your code
-[3] ITCH Parser           ← Pure software logic
-[4] Order Logic Engine    ← Software (modular logic, decision trees)
-[5] TX Engine             ← Mix: software + register control
-[6] Benchmarks            ← Software testing with hardware constraints
-
 Each instance of the OS runs on a pinned CPU core. The logic flow includes:
 - Receiving raw market data from the NIC via polling
 - Executing a fixed-purpose trading strategy
@@ -114,6 +107,14 @@ There are no system calls, no kernel-user transitions, and no scheduling overhea
 - Execution: Single address space, monolithic binary runtime
 - Logging: Optional ring-buffer logging or serial out
 
+
+[1] Bootloader            ← Hardware-tied
+[2] NIC Driver            ← Mix: low-level hardware + C++ (Maybe Assembly in the future)
+[3] ITCH Parser           ← Pure software logic 
+[4] Order Logic Engine    ← Software (modular logic, decision trees)
+[5] TX Engine             ← Mix: software + register control
+[6] Benchmarks            ← Software testing with hardware constraints
+
 ---
 
 ## Core Components
@@ -131,7 +132,7 @@ There are no system calls, no kernel-user transitions, and no scheduling overhea
 
 ### NIC Driver
 - Targets Intel 82599, Mellanox, or other PCIe-based NICs
-- Initializes descriptor rings
+- Initializes descriptor rings 
 - Performs zero-copy packet handling
 - Uses polling for minimal latency
 
