@@ -89,6 +89,12 @@ This project explores a third approach — a custom operating system that:
 - **Exchange**:
   - Acts as both market data publisher and order receiver.
 
+[1] Bootloader            ← Hardware-tied
+[2] NIC Driver            ← Mix: low-level hardware + your code
+[3] ITCH Parser           ← Pure software logic
+[4] Order Logic Engine    ← Software (modular logic, decision trees)
+[5] TX Engine             ← Mix: software + register control
+[6] Benchmarks            ← Software testing with hardware constraints
 
 Each instance of the OS runs on a pinned CPU core. The logic flow includes:
 - Receiving raw market data from the NIC via polling
